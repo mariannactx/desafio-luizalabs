@@ -1,15 +1,19 @@
 const moment = require('moment')
 
-module.exports = function convert(data) {
-  const entries = data.split("\n")
+function convert(data) {
+  const entriesArray = data.split("\n")
 
+  return arrayToJson(entriesArray)
+}
+
+function arrayToJson(array) {
   const purchases = {}
-  entries.forEach(entry => {
+
+  const numberRegex = /^0*/
+  const stringRegex = /^ */
+
+  array.forEach(entry => {
     if (entry.length) {
-
-      const numberRegex = /^0*/
-      const stringRegex = /^ */
-
       const userId = entry.slice(0, 10).replace(numberRegex, '')
       const userName = entry.slice(10, 55).replace(stringRegex, '')
       const orderId = entry.slice(55, 65).replace(numberRegex, '')
@@ -43,7 +47,7 @@ module.exports = function convert(data) {
     }
   })
 
-  const response = []
+  const json = []
 
   for (let userId in purchases) {
     const user = purchases[userId]
@@ -60,14 +64,16 @@ module.exports = function convert(data) {
       })
     }
 
-    response.push({
+    json.push({
       name: user.name,
       user_id: parseInt(userId),
       orders
     })
   }
 
+  return json.sort((a, b) => { a.user_id - b.user_id })
+}
 
-  return response.sort((a, b) => { a.user_id - b.user_id })
-
+module.exports = {
+  convert, arrayToJson
 }

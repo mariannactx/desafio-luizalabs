@@ -1,5 +1,5 @@
 const Hapi = require('@hapi/hapi');
-const convert = require('./convert.js');
+const { convert } = require('./convert.js');
 
 const init = async () => {
 

@@ -1,5 +1,5 @@
 const fs = require('fs')
-const convert = require('./convert')
+const { convert } = require('./convert')
 
 describe("convert", () => {
   it("should convert data with 1 order per user", async () => {
