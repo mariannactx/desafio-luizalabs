@@ -8,13 +8,12 @@ $ npm start
 
 ## Endpoints
 
-A API tem 3 endpoints
+A API tem 2 endpoints
 - Converter arquivo
-- Filtrar por id do pedido
-- Filtrar por intervalo de datas
+- Filtrar resultados por id do pedido ou intervalo de data de compra
 
 ### Converter
-- Para converter um arquivo de texto desnormalizado em json normalizado:
+Para converter um arquivo de texto desnormalizado em json normalizado:
 
 POST localhost:3000/convert
 ```
